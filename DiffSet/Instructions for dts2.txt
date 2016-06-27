@@ -1,0 +1,40 @@
+Instructions for dts2
+
+Dts2 reads input variables n, k, nt (3i5 format) from the terminal (unit 5).
+
+    * n is the number of marks per ruler
+    * k is the maximum length allowed
+    * nt is the number of rulers 
+
+Dts2 then finds all difference triangle sets consisting of nt rulers each having n marks and length at most k and with all differences distinct. Dts2 writes out the difference triangle sets as it finds them (up to a limit currently 10 determined by the nprint parameter) to the terminal (unit 6) and disk (unit 1). When it has completed the search it writes a summary to the terminal (unit 6). At this point the program may be given another search to do or be terminated by entering 0.
+
+For example to find all golomb rulers with 13 marks and length 106 or less enter
+
+   13  106    1
+
+After a while dts2 will find a ruler
+
+      0     7     8    17    21    36    47    63    69    81
+    101   104   106
+
+and then a bit later complete the search
+
+ n= 13 k= 106 solutions=       1 time=           19.57 nodes=      49441242.
+
+This may take a few hundred seconds on a slow machine. The program can now be terminated by entering
+
+    0
+
+At this point disk unit 1 should contain the following
+
+        13       106         1
+     0     7     8    17    21    36    47    63    69    81
+   101   104   106
+         0         0
+
+If dtsver is now run it will read unit 1 and verify that this is a difference triangle set. It will write to the terminal (unit 6).
+
+        13       106         1
+         0         0         0
+          1 difference triangle sets verified
+
